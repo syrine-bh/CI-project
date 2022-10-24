@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  mysqldb:
+   container_name: mysqldb
+   image: mysql:8
+   restart: sleep-infinity
+   ports:
+    - 3307:3306
+   environment:
+    MYSQL_DATABASE: achatdb
+    MYSQL_ROOT_PASSWORD: pass
+   volumes:
+     - /home/mysql/data:/var/lib/mysql --user 1000
+
+  spring_app:
+   image: cyrinebh123/achatesprit:latest
+   build:
+      context: ./backend
+      dockerfile: Dockerfile
+   container_name: achatesprit
+   restart: sleep-infinity
+   ports:
+    - 8089:8089
+   depends_on:
+    - mysqldb
+
+  front_app:
+   image: cyrinebh123/achatfront:latest
+   build:
+      context: ./frontend
+      dockerfile: Dockerfile
+   container_name: achatfront
+   restart: sleep-infinity
+   ports:
+    - 8085:80
+   depends_on:
+    - spring_app
