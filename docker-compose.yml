@@ -4,7 +4,7 @@ services:
   mysqldb:
    container_name: mysqldb
    image: mysql:8
-   restart: sleep-infinity
+   restart: unless-stopped
    ports:
     - 3307:3306
    environment:
@@ -31,7 +31,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
    container_name: achatfront
-   restart: sleep-infinity
+   restart: on-failure
    ports:
     - 8085:80
    depends_on:
