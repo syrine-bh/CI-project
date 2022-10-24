@@ -15,9 +15,6 @@ services:
 
   spring_app:
    image: cyrinebh123/achatesprit:latest
-   build:
-      context: ./backend
-      dockerfile: Dockerfile
    container_name: achatesprit
    restart: sleep-infinity
    ports:
@@ -27,9 +24,6 @@ services:
 
   front_app:
    image: cyrinebh123/achatfront:latest
-   build:
-      context: ./frontend
-      dockerfile: Dockerfile
    container_name: achatfront
    restart: sleep-infinity
    ports:
