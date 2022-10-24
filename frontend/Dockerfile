@@ -1,4 +1,4 @@
-FROM node:16.17-alpine3.15
+FROM node:16.17-alpine3.15  as builder
 WORKDIR /usr/local/app
 
 COPY ./ /usr/local/app/
@@ -10,6 +10,6 @@ RUN npm run build
 
 FROM nginx:latest
 # Copy the build output to replace the default nginx contents.
-COPY node:16.17-alpine3.15 /usr/local/app/dist/crudtuto-Front /usr/share/nginx/html
+COPY --form=builder /usr/local/app/dist/crudtuto-Front /usr/share/nginx/html
 
 EXPOSE 80
