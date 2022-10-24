@@ -16,7 +16,7 @@ services:
   spring_app:
    image: cyrinebh123/achatesprit:latest
    container_name: achatesprit
-   restart: sleep-infinity
+   restart: unless-stopped
    ports:
     - 8089:8089
    depends_on:
