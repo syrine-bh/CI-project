@@ -1,4 +1,4 @@
-FROM node:16.17-alpine3.15
+FROM 'node:16.17-alpine3.15' as build
 WORKDIR /usr/local/app
 
 COPY ./ /usr/local/app/
